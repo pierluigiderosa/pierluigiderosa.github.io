@@ -17,6 +17,8 @@
     <script src="js/L.Control.Locate.js"></script>
     <script src="http://leaflet.github.io/Leaflet.draw/leaflet.draw.js"></script>
 	<script src="js/leaflet.measurecontrol.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.14/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.1/nv.d3.min.js"></script>
 
     <link href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" rel="stylesheet">
     <link rel="stylesheet" href="css/MarkerCluster.css" />
@@ -30,6 +32,8 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="http://leaflet.github.io/Leaflet.draw/leaflet.draw.css"/>
     <link rel="stylesheet" href="css/leaflet.measurecontrol.css" />
+
+    <link rel="stylesheet" href="https://cdn.rawgit.com/novus/nvd3/v1.8.1/build/nv.d3.css" />
        
 
     <style>
@@ -46,6 +50,15 @@
       .lorem {
             font-style: italic;
             color: #AAA;
+      }
+<!--
+      setting che uso per i div in cui metto i graifici
+-->
+      .set_height 
+            {
+    width: 500px;
+    height: 100px;
+    border: 3px solid #73AD21;
       }
       
 .custom .leaflet-popup-tip,
@@ -125,10 +138,9 @@
                 <HR>               
                 <p style="text-align:center;">Quest'opera è distribuita con Licenza <a href="http://creativecommons.org/licenses/by-sa/4.0/" rel="license">Creative Commons Attribuzione - Condividi allo stesso modo 4.0 Internazionale</a></p>
                 <p style="text-align:center;"><a href="http://creativecommons.org/licenses/by-sa/4.0/" rel="license"><img class=" aligncenter" style="border-width:0;" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" alt="Licenza Creative Commons" /></a></p>                
-<!--
-                <p class="lorem">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
--->
+
             </div>
+            
             <div class="sidebar-pane" id="mappa">
 		    
 		       <h2>Istruzioni</h2>
@@ -136,13 +148,23 @@
 		       Oppure è possibile utilizzare come sfondo le ortofotocarte degli anni 2008, 2000 e 1988 fornite dal <a href="http://www.pcn.minambiente.it/GN/">Geoportale Nazionale</a>.
 		       
 		    </div>
-            <div class="sidebar-pane" id="misure"><h2>Misure</h2></div>
-            <div class="sidebar-pane" id="settings"><h1>Settings</h1></div>
-        </div>
-    </div>
+            
+            <div class="sidebar-pane" id="misure"><h2>Misure</h2>
+            
+                    <div class='set_height' id='chart1'>
+                        <svg></svg>
+                    </div>
+
+                    <div class='set_height' id='chart2'>
+                        <svg></svg>
+                    </div>
+                    </div>
+                </div>
+            </div>
 
     <div id="map" class="sidebar-map" ></div> 
-     
+    
+    <script src="data/creagrafico.js"></script> 
     <script src="data/exp_Limitebacinoidrografico.js"></script>
     <script>
 		function doStyle(feature) {
